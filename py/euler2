@@ -1,0 +1,6 @@
+#!/usr/bin/python
+fibs, n = [0, 1], 0
+while n <= 4000000:
+    n = fibs[-1] + fibs[-2]
+    fibs.append(n)
+print sum(x for x in fibs if x % 2 == 0)
