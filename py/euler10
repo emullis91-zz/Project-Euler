@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+def sieve(lim):
+    flags = [True] * lim
+    flags[0] = flags[1] = False
+    for i, f in enumerate(flags):
+        if flags[i]:
+            yield i
+            for j in xrange(i*i, lim, i):
+                flags[j] = False
+
+g = sieve(2000000)
+total = 0
+while 1:
+    try:
+        total += g.next()
+    except: 
+        break
+print total
