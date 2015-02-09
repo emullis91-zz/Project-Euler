@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+def concat_prod(n, r):
+    return ''.join([str(n * k) for k in xrange(1, r + 1)])
+
+def is_pandigital(s):
+    return sorted(s) == map(str, range(1, 10))
+
+n = 1
+while 1:
+    for r in xrange(2,10):
+        c = concat_prod(n, r)
+        if is_pandigital(c):
+            print n, c
+    n+=1
