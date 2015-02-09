@@ -1,0 +1,46 @@
+#!/usr/bin/python
+
+def num2word(n):
+    singles = {0: '', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
+               6: 'six', 7: 'seven', 8: 'eight', 9: 'nine'}
+    teens = {10: 'ten', 11: 'eleven', 12: 'twelve', 13: 'thirteen', 
+             14: 'fourteen', 15: 'fifteen', 16: 'sixteen', 
+             17: 'seventeen', 18: 'eighteen', 19: 'nineteen'}
+    tens = {2: 'twenty', 3: 'thirty', 4: 'forty',
+            5: 'fifty', 6: 'sixty', 7: 'seventy', 8: 'eighty',
+            9: 'ninety'}
+    w = ""
+       
+    if n == 0:
+        pass
+    if n == 1000:
+        return "onethousand"
+    elif n < 10:
+        w = singles[n]
+    elif n >= 10 and n < 20:
+        w = teens[n]
+    elif n >= 20 and n < 100:
+        w = tens[n/10] + singles [n%10]
+
+    elif n >= 100:
+        one = singles[n / 100]
+        m = n % 100
+        if m == 0:
+            return "%shundred" % one
+        if m < 10:
+            two = singles[m]
+            return "%shundredand%s" % (one, two)
+        if m >= 10 and m < 20:
+            two = teens[m]
+            return "%shundredand%s" % (one, two)
+        else:
+            two = tens[m / 10]
+        three = singles[n % 10]
+        w = "%shundredand%s%s" % (one, two, three)
+    return w
+
+total = 0
+for n in xrange(1, 1001):
+    total += len(num2word(n))
+
+print total
