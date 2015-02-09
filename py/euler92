@@ -1,5 +1,4 @@
 #!/usr/bin/python
-from sys import argv
 
 def chain(n):
     c = []
@@ -9,7 +8,7 @@ def chain(n):
         c.append(m)
     return c
 
-max = int(argv[1])
+max = 10000000
 total = 0
 for n in xrange(1, max):
     c = chain(n)
