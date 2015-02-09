@@ -1,0 +1,27 @@
+#!/usr/bin/python
+from sieves import eratos
+
+max = 2000000
+primes = set(eratos(max))
+
+def rotations(n):
+    s = str(n)
+    r = [s]
+    for x in xrange(1, len(s)):
+        r.append(s[x:]+s[:x])
+    return set(map(int, r))
+
+def is_circular(n):
+    return all([x in primes for x in rotations(n)])
+
+circs = 0
+seen = []
+for n in primes:
+    if n not in seen:
+        r = rotations(n)
+        if r & primes == r:
+            circs += len(r)
+            for m in r:
+                seen.append(m)
+
+print circs
