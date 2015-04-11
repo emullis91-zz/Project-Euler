@@ -1,0 +1,20 @@
+#!/usr/bin/ruby
+
+MAX_FIB = 4_000_000
+sum = 0
+fibs = [0, 1]
+
+while true do
+    fib = fibs[-1] + fibs[-2]
+    fibs.push(fib)
+
+    if fib > MAX_FIB then
+        break
+    end
+
+    if fib % 2 == 0 then
+        sum += fib
+    end
+end
+
+puts sum
