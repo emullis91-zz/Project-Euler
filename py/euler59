@@ -1,0 +1,38 @@
+#!/usr/bin/python
+import sys
+
+def most(bools):
+    bools = map(int, bools)
+    numtrue = sum(bools)
+    numfalse = len(bools) - numtrue
+    if numtrue > numfalse:
+        return True
+    return False
+
+fhandle = open("cipher.txt", "r")
+cipher_codes = map(int, fhandle.read().split(','))
+fhandle.close()
+
+common_english_words = [" the ", " a ", " in ", " we ", " our ", " my ",
+                        " he ", " with "]
+
+keynum = 0
+plaintextsum = 0
+for k1 in xrange(97, 123):
+    for k2 in xrange(97, 123):
+        for k3 in xrange(97, 123):
+            keynum += 1
+            decryptedtext = ""
+            key = [k1, k2, k3]
+            textkey = ''.join(map(chr, key))
+#            print "trying key number %d" % keynum
+            for idx, code in enumerate(cipher_codes):
+                decrypted_char = chr(key[idx % 3] ^ code)
+                decryptedtext += decrypted_char
+            if most([w in decryptedtext for w in common_english_words]):
+                print "Plaintext found with key %s:" % textkey
+                print "%s..." % decryptedtext[:240]
+                for p in decryptedtext:
+                    plaintextsum += ord(p)
+                print plaintextsum
+                sys.exit(0)
