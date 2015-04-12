@@ -1,0 +1,18 @@
+#!/usr/bin/python
+
+###
+# this solution is efficient for problem 67 as well.
+### 
+fhandle = open("triangle.txt", "r")
+rows = [map(int, r.split()) for r in fhandle.readlines()][::-1]
+fhandle.close()
+
+for i, row in enumerate(rows):
+    if i == 0: 
+        continue
+    for j, element in enumerate(row):
+        candidateA = element + rows[i-1][j]
+        candidateB = element + rows[i-1][j+1]
+        rows[i][j] = max(candidateA, candidateB)
+
+print rows[i][0]
