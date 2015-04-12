@@ -1,0 +1,33 @@
+#!/usr/bin/python
+from math import sqrt
+
+def factorsum(n):
+    total = 1
+    for m in xrange(2, int(sqrt(n)+1)):
+        if n % m == 0:
+            total += m
+            if n / m != m:
+                total += n / m
+    return total
+
+LIMIT = 28123
+abundants = []
+abundantsums = [False] * (LIMIT+1)
+total = 0
+
+for n in xrange(2, LIMIT):
+    if factorsum(n) > n:
+        abundants.append(n)
+
+for n in xrange(len(abundants)):
+    for m in xrange(n, len(abundants)):
+        if abundants[n] + abundants[m] <= LIMIT:
+            abundantsums[abundants[n] + abundants[m]] = True
+        else:
+           break
+
+for n in xrange(1, LIMIT):
+    if not abundantsums[n]:
+        total += n
+
+print total
