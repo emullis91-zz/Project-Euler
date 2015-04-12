@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+fhandle = open("names.txt", "r")
+names = sorted(fhandle.read().split(','))
+fhandle.close()
+
+ALPHA = "\"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+total_score = 0
+
+for name in names:
+    name_score = 0
+    for letter in name:
+        if letter in ALPHA:
+            name_score += ALPHA.index(letter)
+    name_score *= (names.index(name) + 1)
+    total_score += name_score
+
+print total_score
