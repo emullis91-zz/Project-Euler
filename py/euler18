@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
-###
-# this solution is efficient for problem 67 as well.
-### 
+# the following code is a fast solution to problem 67 as well.
 fhandle = open("triangle.txt", "r")
 rows = [map(int, r.split()) for r in fhandle.readlines()][::-1]
 fhandle.close()
