@@ -1,0 +1,14 @@
+#!/usr/bin/python
+
+LIM = 1001 * 1001
+n = 1
+total = 1
+step = 2
+
+while n < LIM:
+    for x in xrange(4):
+        n += step
+        total += n
+    step += 2
+
+print total
