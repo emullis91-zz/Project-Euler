@@ -1,0 +1,25 @@
+#!/usr/bin/python
+
+def sieve(lim):
+    flags = [True] * lim
+    flags[0] = flags[1] = False
+    for i, f in enumerate(flags):
+        if flags[i]:
+            yield i
+            for j in xrange(i*i, lim, i):
+                flags[j] = False
+
+prime_list = list(sieve(1000))
+max_n = 0
+for a in xrange(-999, 1001, 2):
+    for i in xrange(len(prime_list)):
+        n = 0 
+        while n * n + a * n + prime_list[i] in prime_list:
+            n += 1
+
+        if n > max_n:
+             max_n = n
+             max_a = a
+             max_b = prime_list[i]
+
+print max_a * max_b 
